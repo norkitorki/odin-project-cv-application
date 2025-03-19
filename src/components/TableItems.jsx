@@ -6,11 +6,19 @@ export default function TableItems({ properties, isEditing }) {
   const [isAdding, setIsAdding] = useState(false);
   const newValues = properties.map(() => [null]);
 
-  console.log(items);
-
-  const addNewItem = (event, index) => {
+  const updateNewValues = (event, index) => {
     const input = event.target;
     newValues[index] = [input.value, input.type];
+  };
+
+  const saveItem = () => {
+    const emptyIndex = newValues.findIndex((item) => !item[0]);
+    if (emptyIndex !== -1) {
+      return alert(`${properties[emptyIndex][0]} cannot be empty`);
+    }
+
+    setItems([...items, { id: uuid(), values: newValues }]);
+    setIsAdding(false);
   };
 
   const updateItem = (event, id, index) => {
@@ -22,13 +30,6 @@ export default function TableItems({ properties, isEditing }) {
     );
   };
 
-  const saveItem = () => {
-    if (newValues.every((item) => item[0] !== null)) {
-      setItems([...items, { id: uuid(), values: newValues }]);
-    }
-    setIsAdding(false);
-  };
-
   const removeItem = (id) => {
     const confirmation = confirm('Are you sure?');
     if (confirmation) setItems(items.filter((item) => item.id !== id));
@@ -36,6 +37,8 @@ export default function TableItems({ properties, isEditing }) {
 
   const sortItems = (event) => {
     const index = event.target.value;
+    if (index < 0) return;
+
     setItems(
       items.toSorted((a, b) =>
         a.values[index][0].localeCompare(b.values[index][0])
@@ -53,8 +56,9 @@ export default function TableItems({ properties, isEditing }) {
             ))}
             {isEditing && items.length > 1 && (
               <th className="no-print">
-                Sort By
-                <select onChange={sortItems}>
+                Sort ASC by
+                <select style={{ marginLeft: '5px' }} onChange={sortItems}>
+                  <option value={-1}></option>
                   {properties.map((property, index) => (
                     <option key={index} value={index}>
                       {property[0]}
@@ -99,8 +103,10 @@ export default function TableItems({ properties, isEditing }) {
               {properties.map((property, index) => (
                 <td key={index}>
                   <input
+                    autoFocus={index === 0 ? true : false}
+                    required
                     type={property.length > 1 ? property[1] : 'text'}
-                    onChange={(e) => addNewItem(e, index)}
+                    onChange={(e) => updateNewValues(e, index)}
                   ></input>
                 </td>
               ))}
@@ -124,10 +130,10 @@ export default function TableItems({ properties, isEditing }) {
           )}
         </tbody>
       </table>
-      {isEditing && !isAdding && (
+      {!isAdding && (
         <button
           className="no-print"
-          style={{ color: 'green', border: 'none', cursor: 'pointer' }}
+          style={{ border: 'none', cursor: 'pointer' }}
           title="add item"
           onClick={() => setIsAdding(true)}
         >
