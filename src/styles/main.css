@@ -1,0 +1,106 @@
+* {
+  font-family: Roboto, Verdana, sans-serif, Geneva, Tahoma;
+}
+
+h1 {
+  font-size: 3.5rem;
+  text-align: center;
+  text-decoration: underline;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h1,
+th,
+label,
+h2 {
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  transition: all 0.5s ease-in-out;
+}
+
+button:hover,
+button:focus {
+  transform: scale(1.1);
+}
+
+input {
+  height: 1.8rem;
+  font-size: 1rem;
+  border: 2px solid #b3b3b36b;
+  border-radius: 5px;
+  text-align: center;
+}
+
+input:invalid {
+  outline: 2px solid red;
+}
+
+nav {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav button {
+  background: none;
+  padding: 6px 10px;
+  transition: all 0.2s ease-in;
+}
+
+nav button:hover,
+nav button:focus {
+  font-weight: bold;
+}
+
+#root {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.personal,
+.education,
+.practical {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.personal input {
+  margin-left: 1rem;
+}
+
+th {
+  border-bottom: 1px solid #b3b3b36b;
+  padding: 1rem;
+}
+
+td {
+  max-width: 400px;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.new-item {
+  transition: all 2s ease-in;
+}
+
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  th,
+  td {
+    max-width: 200px;
+  }
+}
