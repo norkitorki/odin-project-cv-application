@@ -3,7 +3,6 @@ import { useState } from 'react';
 function Input({ type, value, isEditing, onChange }) {
   return (
     <input
-      required
       type={type}
       value={value}
       disabled={!isEditing}
