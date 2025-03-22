@@ -24,6 +24,7 @@ export default function Input({
   type,
   value,
   required,
+  focus,
   disabled,
   onChange,
   onClear,
@@ -34,6 +35,7 @@ export default function Input({
         type={type}
         value={value}
         required={required}
+        autoFocus={focus}
         disabled={disabled}
         onChange={onChange}
       />

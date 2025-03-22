@@ -35,6 +35,7 @@ export default function Personal({ isEditing }) {
                   type={value[1]}
                   value={person[lowerVal]}
                   required={false}
+                  focus={index === 0 && true}
                   disabled={!isEditing}
                   onChange={(e) => update(e, lowerVal)}
                   onClear={() => clear(lowerVal)}
