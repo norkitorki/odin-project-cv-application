@@ -1,23 +1,27 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import Input from './Input';
 
 export default function TableItems({ properties, isEditing }) {
   const [items, setItems] = useState([]);
+  const [newItem, setNewItem] = useState(properties.map(() => ['']));
   const [isAdding, setIsAdding] = useState(false);
-  const newValues = properties.map(() => [null]);
 
-  const updateNewValues = (event, index) => {
+  const updateNewItem = (event, index) => {
     const input = event.target;
-    newValues[index] = [input.value, input.type];
+    setNewItem(
+      newItem.map((val, i) => (index === i ? [input.value, input.type] : val))
+    );
   };
 
   const saveItem = () => {
-    const emptyIndex = newValues.findIndex((item) => !item[0]);
+    const emptyIndex = newItem.findIndex((item) => !item[0]);
     if (emptyIndex !== -1) {
       return alert(`${properties[emptyIndex][0]} cannot be empty`);
     }
 
-    setItems([...items, { id: uuid(), values: newValues }]);
+    setItems([...items, { id: uuid(), values: newItem }]);
+    setNewItem(properties.map(() => ['']));
     setIsAdding(false);
   };
 
@@ -75,11 +79,17 @@ export default function TableItems({ properties, isEditing }) {
               {item.values.map((value, index) => (
                 <td key={index}>
                   {isEditing ? (
-                    <input
+                    <Input
                       type={value[1]}
+                      value={value[0]}
+                      required={true}
+                      disabled={false}
+                      isEditing={isEditing}
                       onChange={(e) => updateItem(e, item.id, index)}
-                      defaultValue={value[0]}
-                    ></input>
+                      onClear={() =>
+                        updateItem({ target: { value: '' } }, item.id, index)
+                      }
+                    />
                   ) : (
                     value[0]
                   )}
@@ -101,13 +111,22 @@ export default function TableItems({ properties, isEditing }) {
           {isAdding && (
             <tr className="new-item">
               {properties.map((property, index) => (
-                <td key={index}>
-                  <input
-                    autoFocus={index === 0 ? true : false}
-                    required
+                <td key={index} style={{ position: 'relative' }}>
+                  <Input
                     type={property.length > 1 ? property[1] : 'text'}
-                    onChange={(e) => updateNewValues(e, index)}
-                  ></input>
+                    value={newItem[index][0]}
+                    required={true}
+                    isEditing={isEditing}
+                    onChange={(e) => updateNewItem(e, index)}
+                    onClear={(e) =>
+                      updateNewItem(
+                        {
+                          target: { value: '', type: e.target.type },
+                        },
+                        index
+                      )
+                    }
+                  />
                 </td>
               ))}
               <td>
