@@ -37,7 +37,7 @@ export default function Input({
         disabled={disabled}
         onChange={onChange}
       />
-      {value && <ClearInput onClick={onClear} />}
+      {value && !disabled && <ClearInput onClick={onClear} />}
     </div>
   );
 }
