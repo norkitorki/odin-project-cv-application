@@ -47,6 +47,11 @@ input:invalid {
   border: none;
 }
 
+header {
+  position: sticky;
+  top: 0;
+}
+
 nav {
   padding: 0.5rem;
   display: flex;
