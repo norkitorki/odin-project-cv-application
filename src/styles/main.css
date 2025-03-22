@@ -42,6 +42,11 @@ input:invalid {
   outline: 2px solid red;
 }
 
+.personal input:disabled {
+  color: inherit;
+  border: none;
+}
+
 nav {
   padding: 0.5rem;
   display: flex;
@@ -85,12 +90,8 @@ th {
 
 td {
   max-width: 400px;
-  padding: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
   text-align: center;
-}
-
-.new-item {
-  transition: all 2s ease-in;
 }
 
 @media print {
