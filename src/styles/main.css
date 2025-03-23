@@ -77,11 +77,19 @@ nav button:focus {
 .personal,
 .education,
 .practical {
-  margin-top: 1.5rem;
+  max-width: max-content;
+  margin: 1.5rem auto 0 auto;
+  padding: 0.5rem 2rem;
+  border: 2px solid #b3b3b352;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.personal label {
+  align-self: flex-end;
 }
 
 .personal input {
