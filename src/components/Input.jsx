@@ -1,9 +1,13 @@
 function ClearInput({ onClick }) {
+  const show = (event) => (event.target.style.opacity = 1);
+  const hide = (event) => (event.target.style.opacity = 0);
+
   return (
     <button
       className="clear-input no-print"
       style={{
         position: 'absolute',
+        opacity: '0',
         color: 'red',
         margin: '0',
         padding: '0',
@@ -14,6 +18,10 @@ function ClearInput({ onClick }) {
       }}
       title="clear input"
       onClick={onClick}
+      onFocus={show}
+      onBlur={hide}
+      onPointerEnter={show}
+      onPointerLeave={hide}
     >
       ✖
     </button>
