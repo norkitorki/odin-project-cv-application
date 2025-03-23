@@ -38,6 +38,10 @@ input {
   text-align: center;
 }
 
+input:not([type='date']) {
+  padding-right: 1.5rem;
+}
+
 input:invalid {
   outline: 2px solid red;
 }
