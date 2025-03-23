@@ -1,13 +1,13 @@
 function ClearInput({ onClick }) {
   const show = (event) => (event.target.style.opacity = 1);
-  const hide = (event) => (event.target.style.opacity = 0);
+  const hide = (event) => (event.target.style.opacity = 0.33);
 
   return (
     <button
       className="clear-input no-print"
       style={{
         position: 'absolute',
-        opacity: '0',
+        opacity: '0.33',
         color: 'red',
         margin: '0',
         padding: '0',
