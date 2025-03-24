@@ -39,14 +39,23 @@ export default function Input({
 }) {
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
-      <input
-        type={type}
-        value={value}
-        required={required}
-        autoFocus={focus}
-        disabled={disabled}
-        onChange={onChange}
-      />
+      {type === 'textarea' ? (
+        <textarea
+          value={value}
+          required={required}
+          autoFocus={focus}
+          onChange={onChange}
+        />
+      ) : (
+        <input
+          type={type}
+          value={value}
+          required={required}
+          autoFocus={focus}
+          disabled={disabled}
+          onChange={onChange}
+        />
+      )}
       {value && !disabled && <ClearInput onClick={onClear} />}
     </div>
   );

@@ -4,7 +4,7 @@ export default function Practical({ isEditing }) {
   const properties = [
     ['Company Name'],
     ['Position'],
-    ['Responsibilities'],
+    ['Responsibilities', 'textarea'],
     ['Date From', 'date'],
     ['Date To', 'date'],
   ];

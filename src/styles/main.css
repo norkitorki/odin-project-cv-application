@@ -30,6 +30,10 @@ button:focus {
   transform: scale(1.1);
 }
 
+textarea {
+  max-width: 382px;
+}
+
 input {
   height: 1.8rem;
   font-size: 1rem;
@@ -42,7 +46,8 @@ input:not([type='date']) {
   padding-right: 1.5rem;
 }
 
-input:invalid {
+input:invalid,
+textarea:invalid {
   outline: 2px solid red;
 }
 
@@ -109,6 +114,7 @@ td {
   max-width: 400px;
   padding: 0.5rem 0 0.5rem 0.5rem;
   text-align: center;
+  word-wrap: break-word;
 }
 
 @media print {
