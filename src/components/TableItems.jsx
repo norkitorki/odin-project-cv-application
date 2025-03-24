@@ -116,7 +116,7 @@ export default function TableItems({ properties, isEditing }) {
                     type={property.length > 1 ? property[1] : 'text'}
                     value={newItem[index][0]}
                     required={true}
-                    focus={index === 0 && true}
+                    focus={index === 0}
                     isEditing={isEditing}
                     onChange={(e) => updateNewItem(e, index)}
                     onClear={(e) =>
