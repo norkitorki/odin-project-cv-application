@@ -29,10 +29,11 @@ function ClearInput({ onClick }) {
 }
 
 export default function Input({
+  className,
   type,
   value,
   required,
-  focus,
+  autoFocus,
   disabled,
   onChange,
   onClear,
@@ -41,17 +42,21 @@ export default function Input({
     <div style={{ position: 'relative', display: 'inline-block' }}>
       {type === 'textarea' ? (
         <textarea
+          className={className}
           value={value}
           required={required}
-          autoFocus={focus}
+          placeholder={required ? 'Please fill out this field' : ''}
+          autoFocus={autoFocus}
           onChange={onChange}
         />
       ) : (
         <input
+          className={className}
           type={type}
           value={value}
           required={required}
-          autoFocus={focus}
+          placeholder={required ? 'Please fill out this field' : ''}
+          autoFocus={autoFocus}
           disabled={disabled}
           onChange={onChange}
         />

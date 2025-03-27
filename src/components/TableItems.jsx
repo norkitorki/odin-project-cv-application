@@ -7,6 +7,8 @@ export default function TableItems({ properties, isEditing }) {
   const [newItem, setNewItem] = useState(properties.map(() => ['']));
   const [isAdding, setIsAdding] = useState(false);
 
+  const resetNewItem = () => setNewItem(properties.map(() => ['']));
+
   const updateNewItem = (event, index) => {
     const input = event.target;
     setNewItem(
@@ -16,12 +18,13 @@ export default function TableItems({ properties, isEditing }) {
 
   const saveItem = () => {
     const emptyIndex = newItem.findIndex((item) => !item[0]);
-    if (emptyIndex !== -1) {
+    if (emptyIndex >= 0) {
+      document.querySelector(`.new-item .input-${emptyIndex}`).focus();
       return alert(`${properties[emptyIndex][0]} cannot be empty`);
     }
 
     setItems([...items, { id: uuid(), values: newItem }]);
-    setNewItem(properties.map(() => ['']));
+    resetNewItem();
     setIsAdding(false);
   };
 
@@ -113,10 +116,11 @@ export default function TableItems({ properties, isEditing }) {
               {properties.map((property, index) => (
                 <td key={index} style={{ position: 'relative' }}>
                   <Input
+                    className={`input-${index}`}
                     type={property.length > 1 ? property[1] : 'text'}
                     value={newItem[index][0]}
                     required={true}
-                    focus={index === 0}
+                    autoFocus={index === 0}
                     isEditing={isEditing}
                     onChange={(e) => updateNewItem(e, index)}
                     onClear={(e) =>
@@ -141,7 +145,10 @@ export default function TableItems({ properties, isEditing }) {
                 <button
                   title="cancel item adding"
                   style={{ border: 'none', color: 'red', cursor: 'pointer' }}
-                  onClick={() => setIsAdding(false)}
+                  onClick={() => {
+                    resetNewItem();
+                    setIsAdding(false);
+                  }}
                 >
                   ✘
                 </button>

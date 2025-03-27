@@ -32,14 +32,28 @@ button:focus {
 
 textarea {
   max-width: 382px;
+  outline: none;
 }
 
 input {
   height: 1.8rem;
   font-size: 1rem;
-  border: 2px solid #b3b3b36b;
+  border: 1px solid #b3b3b36b;
   border-radius: 5px;
   text-align: center;
+  outline: none;
+}
+
+textarea::placeholder,
+input::placeholder {
+  font-size: 0.75rem;
+  color: red;
+  padding-left: 1.5rem;
+}
+
+textarea:focus::placeholder,
+input:focus::placeholder {
+  opacity: 0;
 }
 
 input:not([type='date']) {
@@ -48,7 +62,7 @@ input:not([type='date']) {
 
 input:invalid,
 textarea:invalid {
-  outline: 2px solid red;
+  border: 1px solid red;
 }
 
 .personal input:disabled {
