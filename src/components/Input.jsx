@@ -1,4 +1,6 @@
-function ClearInput({ onClick }) {
+import { useRef } from 'react';
+
+function ClearInput({ onClick, inputRef }) {
   const show = (event) => (event.target.style.opacity = 1);
   const hide = (event) => (event.target.style.opacity = 0.33);
 
@@ -17,7 +19,10 @@ function ClearInput({ onClick }) {
         right: '8px',
       }}
       title="clear input"
-      onClick={onClick}
+      onClick={(e) => {
+        onClick(e);
+        inputRef.current && inputRef.current.focus();
+      }}
       onFocus={show}
       onBlur={hide}
       onPointerEnter={show}
@@ -38,10 +43,13 @@ export default function Input({
   onChange,
   onClear,
 }) {
+  const inputRef = useRef(null);
+
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       {type === 'textarea' ? (
         <textarea
+          ref={inputRef}
           className={className}
           value={value}
           required={required}
@@ -51,6 +59,7 @@ export default function Input({
         />
       ) : (
         <input
+          ref={inputRef}
           className={className}
           type={type}
           value={value}
@@ -61,7 +70,9 @@ export default function Input({
           onChange={onChange}
         />
       )}
-      {value && !disabled && <ClearInput onClick={onClear} />}
+      {value && !disabled && (
+        <ClearInput onClick={onClear} inputRef={inputRef} />
+      )}
     </div>
   );
 }
