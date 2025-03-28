@@ -29,7 +29,7 @@ export default function Personal({ isEditing }) {
           ].map((value, index) => {
             const lowerVal = value[0].toLowerCase();
             return isEditing || (!isEditing && person[lowerVal]) ? (
-              <label key={index}>
+              <label key={lowerVal}>
                 {value[0]}
                 <Input
                   type={value[1]}

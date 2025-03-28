@@ -58,8 +58,8 @@ export default function TableItems({ properties, isEditing }) {
       <table>
         <thead>
           <tr>
-            {properties.map((property, index) => (
-              <th key={index}>{property[0]}</th>
+            {properties.map((property) => (
+              <th key={property[0]}>{property[0]}</th>
             ))}
             {isEditing && items.length > 1 && (
               <th className="no-print">
@@ -67,7 +67,7 @@ export default function TableItems({ properties, isEditing }) {
                 <select style={{ marginLeft: '5px' }} onChange={sortItems}>
                   <option value={-1}></option>
                   {properties.map((property, index) => (
-                    <option key={index} value={index}>
+                    <option key={property[0]} value={index}>
                       {property[0]}
                     </option>
                   ))}
@@ -86,7 +86,6 @@ export default function TableItems({ properties, isEditing }) {
                       type={value[1]}
                       value={value[0]}
                       required={true}
-                      disabled={false}
                       isEditing={isEditing}
                       onChange={(e) => updateItem(e, item.id, index)}
                       onClear={() =>
@@ -114,7 +113,7 @@ export default function TableItems({ properties, isEditing }) {
           {isAdding && (
             <tr className="new-item">
               {properties.map((property, index) => (
-                <td key={index} style={{ position: 'relative' }}>
+                <td key={property[0]}>
                   <Input
                     className={`input-${index}`}
                     type={property.length > 1 ? property[1] : 'text'}
