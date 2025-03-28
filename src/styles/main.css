@@ -32,9 +32,10 @@ button:focus {
 
 textarea {
   max-width: 382px;
-  outline: none;
+  transform: translateY(0.6rem);
 }
 
+textarea,
 input {
   height: 1.8rem;
   font-size: 1rem;
@@ -60,8 +61,8 @@ input:not([type='date']) {
   padding-right: 1.5rem;
 }
 
-input:invalid,
-textarea:invalid {
+textarea:invalid,
+input:invalid {
   border: 1px solid red;
 }
 
