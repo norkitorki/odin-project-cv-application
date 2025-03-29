@@ -32,6 +32,7 @@ button:focus {
 
 textarea {
   max-width: 382px;
+  min-height: 1.8rem;
   transform: translateY(0.6rem);
 }
 
@@ -50,6 +51,10 @@ input::placeholder {
   font-size: 0.75rem;
   color: red;
   padding-left: 1.5rem;
+}
+
+textarea::placeholder {
+  padding-left: 0;
 }
 
 textarea:focus::placeholder,
