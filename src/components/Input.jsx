@@ -8,6 +8,7 @@ function ClearInput({ onClick, inputRef }) {
     <button
       className="clear-input no-print"
       style={{
+        fontSize: '1rem',
         position: 'absolute',
         opacity: '0.33',
         color: 'red',
