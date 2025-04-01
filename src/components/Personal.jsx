@@ -30,7 +30,9 @@ export default function Personal({ isEditing }) {
             const lowerVal = value[0].toLowerCase();
             return isEditing || (!isEditing && person[lowerVal]) ? (
               <label key={lowerVal}>
-                <span style={{ display: 'block', padding: '0.5rem 0' }}>{value[0]}</span>
+                <span style={{ display: 'block', padding: '0.5rem 0' }}>
+                  {value[0]}
+                </span>
                 <Input
                   type={value[1]}
                   value={person[lowerVal]}
