@@ -11,7 +11,7 @@ export default function App() {
       <header className="no-print">
         <nav>
           <button onClick={() => setIsEditing(!isEditing)}>
-            📝 {`${isEditing ? 'Save' : 'Edit'} Information`}
+            📝 {isEditing ? 'Save' : 'Edit'}
           </button>
           <button
             onClick={() => {

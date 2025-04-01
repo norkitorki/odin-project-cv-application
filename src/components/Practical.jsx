@@ -11,8 +11,12 @@ export default function Practical({ isEditing }) {
 
   return (
     <section className="practical">
-      <h2>Practical</h2>
-      <TableItems properties={properties} isEditing={isEditing} />
+      <h2 style={{ paddingBottom: '1rem' }}>Practical</h2>
+      <TableItems
+        properties={properties}
+        className={'practical-items'}
+        isEditing={isEditing}
+      />
     </section>
   );
 }
