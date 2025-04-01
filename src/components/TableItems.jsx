@@ -272,7 +272,6 @@ export default function TableItems({ properties, className, isEditing }) {
       {!isAdding && (
         <button
           className="add-item-btn no-print"
-          style={{ border: 'none', cursor: 'pointer' }}
           title="add item"
           onClick={() => setIsAdding(true)}
         >
